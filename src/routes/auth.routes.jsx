@@ -5,14 +5,16 @@ import { SignUp } from '../pages/SignUp'
 
 
 export function AuthRoutes() {
-  //const user = localStorage.getItem("@rocketnotes:user")
+  const user = localStorage.getItem("@foodExplorer:user")
+
+  console.log("User in AuthRoutes:", user);
 
   return (
     <Routes>
       <Route path="/" element={<SignIn />} />
       <Route path="/register" element={<SignUp />} />
 
-      <Route path='*' element={<Navigate to="/" />} />
+      {!user && <Route path='*' element={<Navigate to="/" />} />}
     </Routes>
   )
 }
