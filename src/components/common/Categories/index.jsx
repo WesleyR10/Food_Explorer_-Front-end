@@ -11,7 +11,6 @@ export function Categories() {
   useEffect(() => {
     async function fetchCategory() {
       const response = await api.get(`/category`)
-      console.log(response.data); // Exibindo temporariamente os dados no console
       setCategories(response.data);
     }
     fetchCategory()

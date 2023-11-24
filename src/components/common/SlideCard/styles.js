@@ -5,6 +5,7 @@ export const Container = styled.div`
       position: absolute;
       right: 0;
       font-size: 1.6rem;
+      cursor: pointer;
     }
 
     img {
