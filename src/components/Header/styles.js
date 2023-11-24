@@ -13,8 +13,8 @@ export const Container = styled.header`
   padding: 28px 123px;
 
   > button.first-button {
-    margin-top: 0rem;
     width: 216px;
+    font-size: 12px;
   }
   
   > div {

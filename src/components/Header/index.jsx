@@ -1,5 +1,6 @@
 import { PiSignOutBold } from "react-icons/pi";
 import { IoIosSearch } from "react-icons/io";
+import { MdOutlineReceipt } from "react-icons/md";
 import { Container, Logout } from "./styles";
 import { useState } from 'react'
 import { api } from '../../services/api'
@@ -33,13 +34,11 @@ export function Header() {
 
       <Input icon={(props) => <IoIosSearch {...props} onClick={fetchSearch} />} placeholder="Pesquisar pelo título do prato ou ingrediente" onChange={(e) => setSearch(e.target.value)} onKeyPress={handleEnterKeyPress} />
 
-      <Button className="first-button" title="Pedidos (0)" />
+      <Button className="first-button" icon={MdOutlineReceipt} title="Pedidos (0)" />
 
-      <span>
-        <Logout onClick={handleSignOut}>
-          <PiSignOutBold />
-        </Logout>
-      </span>
+      <Logout onClick={handleSignOut}>
+        <PiSignOutBold />
+      </Logout>
     </Container>
   )
 }

@@ -62,8 +62,11 @@ export const Form = styled.form`
   > div {
   border: 1px solid ${({ theme }) => theme.COLORS.LIGHT_100};
   box-sizing: border-box;
-
 }
+
+button {
+    margin-top: 2rem;
+  }
 
   @media(max-width: ${DEVICE_BREAKPOINTS.LG}){
     padding: 3rem;

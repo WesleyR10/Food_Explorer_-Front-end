@@ -64,6 +64,10 @@ export const Form = styled.form`
   box-sizing: border-box;
 }
 
+  button {
+    margin-top: 2rem;
+  }
+
   @media(max-width: ${DEVICE_BREAKPOINTS.LG}){
     padding: 3rem;
     > h1 {
