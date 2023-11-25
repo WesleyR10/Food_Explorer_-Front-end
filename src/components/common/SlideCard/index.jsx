@@ -6,65 +6,40 @@ import { FaHeart } from "react-icons/fa";
 import { FiPlus, FiMinus } from "react-icons/fi";
 import { api } from '../../../services/api'
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-export function SlideCard({ product }) {
+export function SlideCard({ product, handleFavoriteToggle }) {
   const [favorites, setFavorites] = useState([]);
+  const isFavorite = favorites.includes(product.id);
 
-  async function fetchUserFavorites() {
-    try {
-      const response = await api.get(`/favorites`);
-      const favoritesFromAPI = response.data.map(favorite => favorite.product_id);
+  const navigate = useNavigate();
 
-      setFavorites(favoritesFromAPI);
-      localStorage.setItem('@user:favorites', JSON.stringify(favoritesFromAPI));
-    } catch (error) {
-      console.error("Erro ao buscar os favoritos:", error);
-    }
-  }
+  useEffect(() => {
+    setFavorites([]); // Carregar os favoritos da API aqui usando setFavorites
+  }, []);
 
   async function toggleFavorite(productId) {
     try {
-      let updatedFavorites = [...favorites]; // Criando uma cópia do array de favoritos
-
-      const index = updatedFavorites.indexOf(productId);
-      if (index !== -1) {
-        await api.delete(`/favorites/${productId}`);
-        updatedFavorites.splice(index, 1); // Removendo o item se já estiver nos favoritos
-
-        // Removendo o item do localStorage se foi removido do banco de dados
-        const storedFavorites = JSON.parse(localStorage.getItem('@user:favorites')) || [];
-        const storedIndex = storedFavorites.indexOf(productId);
-        if (storedIndex !== -1) {
-          const newStoredFavorites = [...storedFavorites.slice(0, storedIndex), ...storedFavorites.slice(storedIndex + 1)];
-          localStorage.setItem('@user:favorites', JSON.stringify(newStoredFavorites));
+      await handleFavoriteToggle(productId);
+      setFavorites((prevFavorites) => {
+        if (prevFavorites.includes(productId)) {
+          return prevFavorites.filter((favId) => favId !== productId);
+        } else {
+          return [...prevFavorites, productId];
         }
-      } else {
-        await api.post(`/favorites/${productId}`);
-        const storedFavorites = JSON.parse(localStorage.getItem('@user:favorites')) || [];
-
-        if (!storedFavorites.includes(productId)) {
-          updatedFavorites.push(productId); // Adicionando o item se não estiver nos favoritos
-          localStorage.setItem('@user:favorites', JSON.stringify([...storedFavorites, productId]));
-        }
-      }
-
-      setFavorites(updatedFavorites);
+      });
     } catch (error) {
       console.error("Erro ao alterar os favoritos:", error);
     }
   }
 
-
-  useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem('@user:favorites')) || [];
-
-    if (storedFavorites.length === 0) {
-      fetchUserFavorites();
-    } else {
-      setFavorites(storedFavorites);
+  async function toggleProduct(productId) {
+    try {
+      navigate(`product/${productId}`)
+    } catch (error) {
+      console.error("Erro ao tentar abrir a pagina desse produto.", error);
     }
-  }, []);
-
+  }
 
   return (
     <Container>
@@ -80,8 +55,8 @@ export function SlideCard({ product }) {
           gap: "0.5rem"
         }}
       >
-        <span className="like" onClick={() => toggleFavorite(product.id)} > {favorites.includes(product.id) ? <FaHeart /> : <CiHeart />}</span>
-        <img src={`${api.defaults.baseURL}files/${product.thumbnailUrl}`} alt={product.title} />
+        <span className="like" onClick={() => toggleFavorite(product.id)} > {isFavorite ? <FaHeart /> : <CiHeart />}</span>
+        <img src={`${api.defaults.baseURL}files/${product.thumbnailUrl}`} alt={product.title} onClick={() => toggleProduct(product.id)} />
         <p className="title">{product.title}</p>
         <p className="paragraph">{product.description}</p>
         <span className="value">R$ {product.value}</span>
