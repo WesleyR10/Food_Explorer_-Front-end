@@ -46,7 +46,7 @@ export function SlideCard({ product, handleFavoriteToggle }) {
       <section
         key={product.id}
         style={{
-          width: '304px',
+          width: '300px',
           position: 'relative',
           display: 'flex',
           flexDirection: 'column',

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.header`
+export const Container = styled.footer`
     padding: 28px 123px;
     background-color: ${({ theme }) => theme.COLORS.DARK_600};
     display: flex;
