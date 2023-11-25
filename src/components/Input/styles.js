@@ -5,7 +5,7 @@ width: 100%;
 display: flex;
 align-items: center;
 
-background-color: ${({ theme }) => theme.COLORS.DARK_800};
+background-color: ${({ theme }) => theme.COLORS.DARK_900};
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
   margin-bottom: 0.5rem;

@@ -4,13 +4,19 @@ export const Container = styled.header`
   height: 104px;
   width: 100%;
 
+  background-color: ${({ theme }) => theme.COLORS.DARK_600};
   display: flex;
   justify-content: space-around;
-  align-items: start;
+  align-items: center;
 
   gap: 32px;
 
   padding: 28px 123px;
+
+  img{
+      max-width: 186px;
+      max-height: 30px;
+    }
 
   > button.first-button {
     width: 216px;
