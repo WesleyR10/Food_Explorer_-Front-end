@@ -1,6 +1,8 @@
 //import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../hooks/auth';
+import { USER_ROLE } from '../../../utils/roles';
 import { api } from '../../services/api';
 import { FaChevronLeft } from "react-icons/fa6";
 import { FiPlus, FiMinus } from "react-icons/fi";
@@ -13,13 +15,44 @@ import { Footer } from '../../components/Footer';
 
 export function Product() {
   const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+  const [totalValue, setTotalValue] = useState(0);
 
   const params = useParams();
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   function handleBack() {
     navigate(-1)
   }
+
+  function increaseQuantity() {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  }
+
+  function decreaseQuantity() {
+    setQuantity((prevQuantity) => {
+      if (prevQuantity > 1) {
+        return prevQuantity - 1;
+      } else {
+        return prevQuantity;
+      }
+    });
+  }
+
+  function formatQuantity(number) {
+    return number < 10 ? `0${number}` : `${number}`;
+  }
+
+  function calculateTotalValue() {
+    if (product) {
+      const valueWithoutFormatting = product.value.replace(',', '.');
+
+      const total = quantity * parseFloat(valueWithoutFormatting); // Multiplica a quantidade pelo valor unitário
+      setTotalValue(total.toFixed(2)); // Atualiza o estado do valor total
+    }
+  }
+
 
   useEffect(() => {
     async function fetchData() {
@@ -33,6 +66,10 @@ export function Product() {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    calculateTotalValue();
+  }, [quantity, product]);
 
   return (
     <Container>
@@ -58,13 +95,15 @@ export function Product() {
                   }
                 </div>
               }
-
-              <div className="quantity">
-                <span>
-                  <FiMinus /> 01 <FiPlus />
-                </span>
-                <Button title={`incluir - R$ ${product.value}`} />
-              </div>
+              {user.role === USER_ROLE.ADMIN ? <Button title="Editar prato" style={{ maxWidth: '175px' }} />
+                :
+                <div className="quantity">
+                  <span>
+                    <FiMinus onClick={decreaseQuantity} /> {formatQuantity(quantity)} <FiPlus onClick={increaseQuantity} />
+                  </span>
+                  <Button title={`incluir - R$ ${totalValue}`} />
+                </div>
+              }
             </div>
           </div>
         </div>

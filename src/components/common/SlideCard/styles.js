@@ -8,9 +8,17 @@ export const Container = styled.div`
       cursor: pointer;
     }
 
+    .edit {
+      position: absolute;
+      right: 0;
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+
     img {
       max-width: 176px;
       max-height: 176px;
+      cursor: pointer;
     }
     
     .title{
@@ -29,13 +37,15 @@ export const Container = styled.div`
     }
     svg, span{
       color: ${({ theme }) => theme.COLORS.LIGHT_100};
+      font-size: 1.1rem;
+      align-items: center;
     }
 
     .quantity {
       display: flex;
       align-items: center;      
       gap: 1rem;
-      margin-top: 1rem;
+      margin-top: 0.7rem;
 
       > span {
         display: flex;

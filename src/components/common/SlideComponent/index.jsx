@@ -21,7 +21,7 @@ export function SlideComponent({ products, handleFavoriteToggle }) {
             type: "loop",
             perPage: slideCount,
             perMove: 1,
-            width: slideCount * 300,
+            width: slideCount * 440,
             pagination: false,
             arrows: products.length > 4 ? true : false,
             drag: products.length > 4 ? true : false,
