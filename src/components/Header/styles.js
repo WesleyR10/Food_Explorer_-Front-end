@@ -16,6 +16,7 @@ export const Container = styled.header`
   img{
       max-width: 186px;
       max-height: 30px;
+      cursor: pointer;
     }
 
   > button.first-button {
