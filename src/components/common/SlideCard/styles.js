@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+    .card{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      height: 310px;
+    }
+
     .like {
       position: absolute;
       right: 0;
@@ -16,8 +24,8 @@ export const Container = styled.div`
     }
 
     img {
-      max-width: 176px;
-      max-height: 176px;
+      width: 176px;
+      height: 176px;
       cursor: pointer;
     }
     
@@ -25,12 +33,16 @@ export const Container = styled.div`
       color: ${({ theme }) => theme.COLORS.LIGHT_300};
       font-size: 24px;
       font-family: 'Poppins', sans-serif;
+      text-align: center;
     }
 
     .paragraph{
       color: ${({ theme }) => theme.COLORS.LIGHT_400};
       font-size: 14px;
       text-align: center;
+      height: 44px;
+      overflow: hidden;
+
     }
     .value {
       color: ${({ theme }) => theme.COLORS.BLUE_200};
@@ -44,12 +56,10 @@ export const Container = styled.div`
     .quantity {
       display: flex;
       align-items: center;      
-      gap: 1rem;
       margin-top: 0.7rem;
 
       > span {
         display: flex;
-        gap: 0.5rem;
       }
 
       >button{

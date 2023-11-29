@@ -46,6 +46,14 @@ export function SlideCard({ product, handleFavoriteToggle }) {
     }
   }
 
+  async function toggleEdit(productId) {
+    try {
+      navigate(`/edit/${productId}`)
+    } catch (error) {
+      console.error("Erro ao tentar abrir a pagina desse produto.", error);
+    }
+  }
+
   return (
     <Container>
       <section
@@ -60,22 +68,23 @@ export function SlideCard({ product, handleFavoriteToggle }) {
           gap: "0.5rem"
         }}
       >
-        {user.role === USER_ROLE.ADMIN ? <span className="edit" > <TiPencil /> </span> : <span className="like" onClick={() => toggleFavorite(product.id)} > {isFavorite ? <FaHeart /> : <CiHeart />} </span>}
-        <img src={`${api.defaults.baseURL}files/${product.thumbnailUrl}`} alt={product.title} onClick={() => toggleProduct(product.id)} />
-        <p className="title">{product.title}</p>
-        <p className="paragraph">{product.description}</p>
-        <span className="value">{product.value}</span>
+        <div className="card">
+          {user.role === USER_ROLE.ADMIN ? <span className="edit" onClick={() => toggleEdit(product.id)} > <TiPencil /> </span> : <span className="like" onClick={() => toggleFavorite(product.id)} > {isFavorite ? <FaHeart /> : <CiHeart />} </span>}
+          <img src={`${api.defaults.baseURL}files/${product.thumbnailUrl}`} alt={product.title} onClick={() => toggleProduct(product.id)} />
+          <p className="title">{product.title}</p>
+          <p className="paragraph">{product.description}</p>
+          <span className="value">{product.value}</span>
 
-        {user.role === USER_ROLE.ADMIN ? ""
-          :
-          <div className="quantity">
-            <span>
-              <FiMinus /> 01 <FiPlus />
-            </span>
-            <Button title="Incluir" />
-          </div>
-        }
-
+          {user.role === USER_ROLE.ADMIN ? ""
+            :
+            <div className="quantity">
+              <span>
+                <FiMinus /> 01 <FiPlus />
+              </span>
+              <Button title="Incluir" />
+            </div>
+          }
+        </div>
       </section>
     </Container >
   )

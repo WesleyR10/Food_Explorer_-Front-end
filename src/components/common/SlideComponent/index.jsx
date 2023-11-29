@@ -26,7 +26,7 @@ export function SlideComponent({ products, handleFavoriteToggle }) {
             arrows: products.length > 4 ? true : false,
             drag: products.length > 4 ? true : false,
             breakpoints: {
-              1450: {
+              1700: {
                 perPage: slideCount >= 4 ? 4 : slideCount,
                 width: slideCount >= 4 ? 1200 : 990,
                 arrows: products.length > 4 ? true : false,

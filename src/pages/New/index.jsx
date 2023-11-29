@@ -161,7 +161,7 @@ export function New() {
         <label htmlFor="description">Descrição</label>
         <Textarea placeholder='Fale brevemente sobre o prato, seus ingredientes e composição.' onChange={e => setDescription(e.target.value)} />
 
-        <Button title="Salvar alterações" onClick={handleNewProduct} />
+        <Button title="Salvar alterações" onClick={handleNewProduct} className="button" />
       </div>
     </Container>
   )

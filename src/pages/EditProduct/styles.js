@@ -84,7 +84,6 @@ export const Container = styled.div`
       margin-top: 2rem;
       gap: 2rem;
       max-width: 339px ;
-      justify-content: flex-end;
       margin-left: auto; /* Move os botões para a direita */
 
       > .save, .delete{

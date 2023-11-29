@@ -74,5 +74,11 @@ export const Container = styled.div`
       background-color: ${({ theme }) => theme.COLORS.DARK_800};
       border-radius: 8px;
     }
+
+    .button{
+      margin-top: 2rem;
+      width: 180px;
+      margin-left: auto; /* Move os botões para a direita */
+    }
   }
 `;
