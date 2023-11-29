@@ -48,6 +48,10 @@ export function New() {
     }
   }
 
+  function formatPrice(price) {
+    return Number(price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
+
   async function handleNewProduct() {
     if (!thumbnailUrl) {
       return alert("Insira a imagem do produto.")
@@ -77,7 +81,8 @@ export function New() {
       const data = new FormData();
       data.append('title', title);
       data.append('description', description);
-      data.append('value', price);
+      const formattedPrice = formatPrice(price); // Formata o preço
+      data.append('value', formattedPrice);
       data.append('category', category);
       data.append('ingredients', JSON.stringify(ingredients)); // Transforma array em string
       data.append('thumbnailUrl', thumbnailUrl); // Adiciona o arquivo
@@ -150,11 +155,11 @@ export function New() {
           </div>
 
           <label htmlFor="value">Preço</label>
-          <Input id='value' className='value' type='currency' placeholder="R$ 00,00" onChange={(event, value) => setPrice(value)} required />
+          <Input id='value' className='value' type='currency' placeholder="R$ 00,00" value={price} onChange={(event, value) => setPrice(value)} required />
         </div>
 
         <label htmlFor="description">Descrição</label>
-        <Textarea placeholder='Fale brevemente sobre o prato, seus ingredientes e composição' onChange={e => setDescription(e.target.value)} />
+        <Textarea placeholder='Fale brevemente sobre o prato, seus ingredientes e composição.' onChange={e => setDescription(e.target.value)} />
 
         <Button title="Salvar alterações" onClick={handleNewProduct} />
       </div>

@@ -26,6 +26,10 @@ export function Product() {
     navigate(-1)
   }
 
+  function handleEditProduct() {
+    navigate(`/edit/${params.id}`)
+  }
+
   function increaseQuantity() {
     setQuantity((prevQuantity) => prevQuantity + 1);
   }
@@ -46,13 +50,10 @@ export function Product() {
 
   function calculateTotalValue() {
     if (product) {
-      const valueWithoutFormatting = product.value.replace(',', '.');
-
-      const total = quantity * parseFloat(valueWithoutFormatting); // Multiplica a quantidade pelo valor unitário
+      const total = quantity * parseFloat(product.value.replace('R$', '').replace(',', '.')); // Convertendo o valor do produto para um número e multiplicando pela quantidade
       setTotalValue(total.toFixed(2)); // Atualiza o estado do valor total
     }
   }
-
 
   useEffect(() => {
     async function fetchData() {
@@ -95,7 +96,7 @@ export function Product() {
                   }
                 </div>
               }
-              {user.role === USER_ROLE.ADMIN ? <Button title="Editar prato" style={{ maxWidth: '175px' }} />
+              {user.role === USER_ROLE.ADMIN ? <Button title="Editar prato" style={{ maxWidth: '175px' }} onClick={handleEditProduct} />
                 :
                 <div className="quantity">
                   <span>

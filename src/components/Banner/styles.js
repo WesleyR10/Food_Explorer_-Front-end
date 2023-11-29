@@ -6,7 +6,7 @@ export const Container = styled.div`
 `;
 
 export const BannerWrapper = styled.div`
-  margin-top: 60px;
+  margin-top: 69px;
   background-color: ${({ theme }) => theme.COLORS.GRADIENTS_200};
   display: flex;
   align-items: center; 

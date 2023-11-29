@@ -6,29 +6,27 @@ export const Container = styled.div`
     .content{
       padding: 28px 123px;
 
+      .btnBack{
+        margin: 0.7rem 0 1.5rem 0;
+      }
+      
       h1 {
         font-family: 'Poppins', sans-serif;
         font-weight: 400;
         margin-bottom: 2rem;
       }
-      .btnBack{
-        margin: 0.7rem 0 1.5rem 0;
-      }
 
       .section1 {
         display: flex;
-        flex-wrap: wrap;
         gap: 2rem;
       }
 
       .name,.value ,select {
         background-color: ${({ theme }) => theme.COLORS.DARK_800};
       }
-      .name,.value{
-        border-radius: 0.5rem;
-      }
-      select {
-        border-radius: 0.5rem 0 0 0.5rem;
+
+      label{
+        color: ${({ theme }) => theme.COLORS.LIGHT_400};
       }
 
       input[type="file"]{
@@ -50,6 +48,7 @@ export const Container = styled.div`
         svg{
           font-size: 2rem;
         }
+        
         label{
           padding: 0.8rem;
           display: flex;
@@ -58,6 +57,7 @@ export const Container = styled.div`
           gap: 1rem;
           height: 3.4rem;
           background-color: ${({ theme }) => theme.COLORS.DARK_800};
+          color: ${({ theme }) => theme.COLORS.LIGHT_100};
         }
       }
       
@@ -73,6 +73,33 @@ export const Container = styled.div`
       gap: 0.5rem;
       background-color: ${({ theme }) => theme.COLORS.DARK_800};
       border-radius: 8px;
+
+      &.added {
+        background-color: red;
+      }
+    }
+
+    .buttons{
+      display: flex;
+      margin-top: 2rem;
+      gap: 2rem;
+      max-width: 339px ;
+      justify-content: flex-end;
+      margin-left: auto; /* Move os botões para a direita */
+
+      > .save, .delete{
+        font-family: 'Poppins', sans-serif;
+        font-weight: 200;
+        font-size: 0.87rem;
+      }
+
+      > .save{
+        background-color: ${({ theme }) => theme.COLORS.TOMATO_400};
+      }
+
+      > .delete{
+        background-color: ${({ theme }) => theme.COLORS.DARK_800};
+      }
     }
   }
 `;

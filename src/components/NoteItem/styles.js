@@ -1,11 +1,6 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-
-  .added {
-    background-color: ${({ theme }) => theme.COLORS.LIGHT_600};
-  }
-
   display: flex;
   align-items: center;
   
@@ -14,10 +9,15 @@ export const Container = styled.div`
 
   border: ${({ theme, isNew }) => isNew ? `1px dashed ${theme.COLORS.LIGHT_500}` : `1px solid ${theme.COLORS.LIGHT_300}`};
 
-  margin: 8px 0px;
+  margin: 0.5rem 0rem;
   margin-left: 0.5rem;
   border-radius: 10px;
-  padding-right: 16px;
+  padding-right: 0.6rem;
+
+  .added {
+    background-color: ${({ theme }) => theme.COLORS.LIGHT_600};
+  }
+  overflow: hidden; 
 
   > button { 
     border: none;
@@ -25,7 +25,7 @@ export const Container = styled.div`
     display: flex;
 
     svg{
-      margin-left: 0.5rem;
+      margin-left: 0.25rem;
       font-size: 1.2rem;
     }
   }
@@ -39,10 +39,10 @@ export const Container = styled.div`
   }
 
   > input {
-    width: 100%;
+    max-width: 125px;
     height: 2rem;
 
-    padding: 12px;
+    padding: 0.7rem 0.4rem 0.7rem 0.6rem;
 
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     background: transparent;

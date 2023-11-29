@@ -64,7 +64,7 @@ export function SlideCard({ product, handleFavoriteToggle }) {
         <img src={`${api.defaults.baseURL}files/${product.thumbnailUrl}`} alt={product.title} onClick={() => toggleProduct(product.id)} />
         <p className="title">{product.title}</p>
         <p className="paragraph">{product.description}</p>
-        <span className="value">R$ {product.value}</span>
+        <span className="value">{product.value}</span>
 
         {user.role === USER_ROLE.ADMIN ? ""
           :

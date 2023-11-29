@@ -18,7 +18,6 @@ export function Home() {
 
         const favoritesResponse = await api.get(`/favorites`);
         const favoritesFromAPI = favoritesResponse.data.map(favorite => favorite.product_id);
-        console.log("favoritesFromAPI em home:", favoritesFromAPI);
         setFavorites(favoritesFromAPI);
         localStorage.setItem('@user:favorites', JSON.stringify(favoritesFromAPI));
 
