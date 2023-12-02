@@ -25,6 +25,9 @@ background-color: ${({ theme }) => theme.COLORS.DARK_900};
     &:placeholder {
       color: ${({ theme }) => theme.COLORS.LIGHT_500};
     }
+    &::placeholder {
+      font-size: 0.87rem;
+    }
   }
 
   select option {

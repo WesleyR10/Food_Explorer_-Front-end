@@ -21,30 +21,37 @@ export function SlideComponent({ products, handleFavoriteToggle }) {
             type: "loop",
             perPage: slideCount,
             perMove: 1,
-            width: slideCount * 440,
+            width: 'auto',
             pagination: false,
             arrows: products.length > 4 ? true : false,
             drag: products.length > 4 ? true : false,
+            gap: '1.5rem',
             breakpoints: {
               1700: {
                 perPage: slideCount >= 4 ? 4 : slideCount,
-                width: slideCount >= 4 ? 1200 : 990,
+                width: slideCount >= 4 ? 1400 : 980,
                 arrows: products.length > 4 ? true : false,
                 drag: products.length > 4 ? true : false,
               },
-              1200: {
+              1400: {
                 perPage: slideCount >= 3 ? 3 : slideCount,
-                width: slideCount >= 3 ? 990 : 600,
+                width: slideCount >= 3 ? 980 : 480,
                 arrows: products.length > 3 ? true : false,
                 drag: products.length > 3 ? true : false,
               },
-              990: {
+              980: {
                 perPage: slideCount >= 2 ? 2 : slideCount,
-                width: slideCount >= 2 ? 600 : 300,
+                width: slideCount >= 2 ? 640 : 480,
                 arrows: products.length > 2 ? true : false,
                 drag: products.length > 2 ? true : false,
               },
-              600: {
+              650: {
+                perPage: slideCount >= 2 ? 2 : slideCount,
+                width: slideCount >= 2 ? 500 : 480,
+                arrows: products.length > 2 ? true : false,
+                drag: products.length > 2 ? true : false,
+              },
+              520: {
                 perPage: 1,
                 width: 300,
                 arrows: products.length > 1 ? true : false,

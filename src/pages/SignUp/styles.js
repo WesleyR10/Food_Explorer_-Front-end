@@ -48,6 +48,9 @@ export const Form = styled.form`
     display: block;
     margin: 0 auto;
     margin-top: 2rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 0.87rem;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     text-align: center;
   }

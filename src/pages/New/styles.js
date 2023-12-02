@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { DEVICE_BREAKPOINTS } from "../../styles/deviceBreakpoints"
 
 export const Container = styled.div`
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
@@ -80,5 +81,63 @@ export const Container = styled.div`
       width: 180px;
       margin-left: auto; /* Move os botões para a direita */
     }
+  }
+
+  @media (max-width: 1170px) {
+    .content{
+      padding: 28px 90px;
+    } 
+  }
+
+  @media (max-width: 1070px) {
+    .content{
+      padding: 28px 40px;
+
+      .section1 {
+        gap: 1rem;
+      }
+    } 
+  }
+
+  @media (max-width: 830px) {
+    .content{
+      padding: 7px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      .btnBack{
+        margin: 0.4rem 0 0 0;
+      }
+      h1{
+        margin-bottom: 0rem;
+      }
+      .section1 {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .input-wrapper {
+        gap: 0.75rem;
+      }
+      .section2{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .button{
+        width: 100%;
+        background-color: ${({ theme }) => theme.COLORS.TOMATO_400};
+        margin-bottom: 2rem;
+      }
+    } 
+  }
+
+  @media (max-width: ${DEVICE_BREAKPOINTS.SM}){
+    .btnBack{
+        font-size: 1.2rem;
+      }
+    h1{
+        font-size: 1.5rem;
+      }
   }
 `;

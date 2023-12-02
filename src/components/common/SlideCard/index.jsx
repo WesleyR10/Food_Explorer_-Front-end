@@ -58,15 +58,6 @@ export function SlideCard({ product, handleFavoriteToggle }) {
     <Container>
       <section
         key={product.id}
-        style={{
-          width: '300px',
-          position: 'relative',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          paddingLeft: "1rem",
-          gap: "0.5rem"
-        }}
       >
         <div className="card">
           {user.role === USER_ROLE.ADMIN ? <span className="edit" onClick={() => toggleEdit(product.id)} > <TiPencil /> </span> : <span className="like" onClick={() => toggleFavorite(product.id)} > {isFavorite ? <FaHeart /> : <CiHeart />} </span>}

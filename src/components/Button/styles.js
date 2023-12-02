@@ -15,5 +15,5 @@ border: 0;
 padding: 0 0.8rem;
 border-radius: 0.5rem;
 font-family: 'Poppins', sans-serif;
-font-weight: 400;
+font-weight: 300;
 `;

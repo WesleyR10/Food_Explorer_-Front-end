@@ -1,19 +1,22 @@
-import { Header } from "../../components/Header";
-import { ButtonText } from "../../components/ButtonText"
-import { Input } from '../../components/Input'
-import { NoteItem } from '../../components/NoteItem'
-import { Textarea } from '../../components/Textarea'
 import { FaChevronLeft } from "react-icons/fa6";
 import { FaChevronDown } from "react-icons/fa";
 import { MdOutlineFileUpload } from "react-icons/md";
 import { useParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from "react";
 import { api } from '../../services/api';
-import { Container } from "./styles";
+import { SideMenu } from '../../components/SideMenu';
+import { Header } from "../../components/Header";
+import { ButtonText } from "../../components/ButtonText"
+import { Input } from '../../components/Input'
+import { NoteItem } from '../../components/NoteItem'
+import { Textarea } from '../../components/Textarea'
 import { Button } from "../../components/Button";
+import { Footer } from "../../components/Footer";
+import { Container } from "./styles";
 
 
 export function EditProduct() {
+  const [menuIsOpen, setMenuIsOpen] = useState(false)
   const [fetchCategories, setFetchCategories] = useState([]);
   const [fetchProducts, setFetchProducts] = useState({})
   const [ingredients, setIngredients] = useState([]);
@@ -90,8 +93,7 @@ export function EditProduct() {
       if (thumbnailUrl) { // Adiciona essa verificação para enviar ou não a nova imagem
         data.append('thumbnailUrl', thumbnailUrl);
       }
-      const response = await api.put(`products/${params.id}`, data);
-      console.log("Resposta da API:", response); // Log da resposta da API
+      await api.put(`products/${params.id}`, data);
 
       alert('Nota criada com sucesso!');
       navigate(-1);
@@ -118,7 +120,6 @@ export function EditProduct() {
         setFetchCategories(categoryResponse.data);
 
         const productResponse = await api.get(`products/${params.id}`)
-        console.log(productResponse.data)
         setFetchProducts(productResponse.data)
         setTitle(productResponse.data.title || '')
         setCategory(productResponse.data.category_id); // Definindo o estado de categoria com o valor inicial
@@ -136,7 +137,9 @@ export function EditProduct() {
 
   return (
     <Container>
-      <Header />
+      <SideMenu menuIsOpen={menuIsOpen} onCloseMenu={() => setMenuIsOpen(false)} />
+
+      <Header onOpenMenu={() => setMenuIsOpen(true)} />
       {fetchProducts && (
         <div className='content' key={fetchProducts.id}>
           <ButtonText onClick={handleBack} icon={FaChevronLeft} title="voltar" className="btnBack" />
@@ -190,6 +193,7 @@ export function EditProduct() {
           </div>
         </div>
       )}
+      <Footer />
     </Container>
   )
 }

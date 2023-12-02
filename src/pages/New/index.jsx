@@ -11,9 +11,12 @@ import { useState, useEffect } from "react";
 import { api } from '../../services/api';
 import { Container } from "./styles";
 import { Button } from "../../components/Button";
+import { Footer } from "../../components/Footer";
+import { SideMenu } from '../../components/SideMenu';
 
 
 export function New() {
+  const [menuIsOpen, setMenuIsOpen] = useState(false)
   const [ingredients, setIngredients] = useState([]);
   const [newIngredient, setNewIngredient] = useState("");
   const [title, setTitle] = useState("")
@@ -114,7 +117,9 @@ export function New() {
 
   return (
     <Container>
-      <Header />
+      <SideMenu menuIsOpen={menuIsOpen} onCloseMenu={() => setMenuIsOpen(false)} />
+
+      <Header onOpenMenu={() => setMenuIsOpen(true)} />
       <div className='content'>
         <ButtonText onClick={handleBack} icon={FaChevronLeft} title="voltar" className="btnBack" />
         <h1>Adicionar prato</h1>
@@ -163,6 +168,7 @@ export function New() {
 
         <Button title="Salvar alterações" onClick={handleNewProduct} className="button" />
       </div>
+      <Footer />
     </Container>
   )
 }

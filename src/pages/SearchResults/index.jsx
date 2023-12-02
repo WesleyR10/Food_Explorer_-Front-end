@@ -1,16 +1,19 @@
-import { Container } from "./styles";
 import { FaChevronLeft } from "react-icons/fa6";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import { api } from '../../services/api';
+import { SideMenu } from '../../components/SideMenu';
 import { Header } from "../../components/Header";
 import { ButtonText } from "../../components/ButtonText"
+import { Container } from "./styles";
+
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 export function SearchResults() {
   const { searchTerm } = useParams();
   const [searchResults, setSearchResults] = useState([])
+  const [menuIsOpen, setMenuIsOpen] = useState(false)
 
   const navigate = useNavigate();
 
@@ -37,7 +40,7 @@ export function SearchResults() {
     }
 
     fetchData(); // Chama a função assíncrona
-  }, [searchTerm]); // Executa useEffect toda vez que `searchTerm` muda
+  }, [searchTerm]);
 
   useEffect(() => {
     AOS.init({
@@ -47,11 +50,11 @@ export function SearchResults() {
     });
   }, [])
 
-  console.log(searchResults)
-
   return (
     <Container>
-      <Header />
+      <SideMenu menuIsOpen={menuIsOpen} onCloseMenu={() => setMenuIsOpen(false)} />
+
+      <Header onOpenMenu={() => setMenuIsOpen(true)} />
       <div className="container">
         <ButtonText onClick={handleBack} icon={FaChevronLeft} title="voltar" className="btnBack" />
         <div className="flexCard">

@@ -1,18 +1,17 @@
+/* eslint-disable react/prop-types */
 import LogoImg from '../../assets/Logo-Background.png'
 import LogoImgAdmin from '../../assets/LogoAdmin.png'
-import { PiSignOutBold } from "react-icons/pi";
-import { IoIosSearch } from "react-icons/io";
+import { PiSignOutBold, PiReceipt } from "react-icons/pi";
 import { MdOutlineReceipt } from "react-icons/md";
-import { Container, Logout } from "./styles";
-import { useState } from 'react'
+import { List } from "@phosphor-icons/react";
+import { Container, Logout, Menu, ButtonMobile } from "./styles";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from '../../hooks/auth';
 import { USER_ROLE } from '../../../utils/roles';
-import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
+import { SearchInput } from '../SearchInput';
 
-export function Header() {
-  const [search, setSearch] = useState("")
+export function Header({ onOpenMenu }) {
   const { signOut, user } = useAuth()
 
   const navigate = useNavigate()
@@ -28,27 +27,26 @@ export function Header() {
   function handleSignOut() {
     signOut()
   }
-  async function toggleSearch() {
-    navigate(`/search-results/${search}`)
-  }
-
-  // Chamada da fetchSearch quando a tecla Enter é pressionada
-  const handleEnterKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      toggleSearch();
-    }
-  };
 
   return (
     <Container>
+      <Menu onClick={onOpenMenu} >
+        <List />
+      </Menu>
+
       {user.role === USER_ROLE.ADMIN ? <img src={LogoImgAdmin} alt="Logo da empresa food explorer para administradores" onClick={goHome} />
         : <img src={LogoImg} alt="Logo da empresa food explorer para usuários" onClick={goHome} />}
 
-      <Input icon={(props) => <IoIosSearch {...props} onClick={toggleSearch} />} placeholder="Pesquisar pelo título do prato ou ingrediente" onChange={(e) => setSearch(e.target.value)} onKeyPress={handleEnterKeyPress} />
+      <SearchInput />
 
       {user.role === USER_ROLE.ADMIN ? <Button className="first-button" title="Novo prato" onClick={goCreateProduct} /> :
         <Button className="first-button" icon={MdOutlineReceipt} title="Pedidos (0)" />
       }
+
+      <ButtonMobile>
+        <PiReceipt />
+      </ButtonMobile>
+
       <Logout onClick={handleSignOut}>
         <PiSignOutBold />
       </Logout>

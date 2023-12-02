@@ -12,11 +12,13 @@ import { Header } from "../../components/Header"
 import { Container } from "./styles"
 import { Tag } from '../../components/Tag'
 import { Footer } from '../../components/Footer';
+import { SideMenu } from '../../components/SideMenu';
 
 export function Product() {
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [totalValue, setTotalValue] = useState(0);
+  const [menuIsOpen, setMenuIsOpen] = useState(false)
 
   const params = useParams();
   const navigate = useNavigate();
@@ -74,7 +76,9 @@ export function Product() {
 
   return (
     <Container>
-      <Header />
+      <SideMenu menuIsOpen={menuIsOpen} onCloseMenu={() => setMenuIsOpen(false)} />
+
+      <Header onOpenMenu={() => setMenuIsOpen(true)} />
 
       {product &&
         <div className='content'>

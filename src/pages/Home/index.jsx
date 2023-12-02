@@ -5,10 +5,12 @@ import { Header } from '../../components/Header'
 import { Banner } from "../../components/Banner";
 import { Categories } from "../../components/common/Categories";
 import { Footer } from "../../components/Footer";
+import { SideMenu } from '../../components/SideMenu';
 
 export function Home() {
   const [categories, setCategories] = useState([]);
   const [favorites, setFavorites] = useState([]);
+  const [menuIsOpen, setMenuIsOpen] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -53,7 +55,9 @@ export function Home() {
   return (
     <main>
       <Container>
-        <Header />
+        <SideMenu menuIsOpen={menuIsOpen} onCloseMenu={() => setMenuIsOpen(false)} />
+
+        <Header onOpenMenu={() => setMenuIsOpen(true)} />
         <Banner />
         <Categories categories={categories} handleFavoriteToggle={handleFavoriteToggle} />
         <Footer />
