@@ -14,9 +14,11 @@ Essas instruções permitirão que você obtenha uma cópia do projeto em opera�
 Clone o repositório:
 Backend.
 ``` https://github.com/WesleyR10/Food_Explorer.git ```
-
 Frontend.
 ```https://github.com/WesleyR10/Food_Explorer_-Front-end.git```
+
+🛣️ Copia de todas as rotas do projeto, apenas baixar e no insominia importar.
+https://drive.google.com/file/d/1Dnxt7alfnxxdBW3GMwHgsNiTiBKEtwgt/view?usp=drive_link
 
 🔧 Instalação
 **1°** Instale as dependecias do backend
