@@ -15,6 +15,17 @@ export const Container = styled.div`
       position: relative;
       border-radius: 0.5rem;
       box-shadow: rgba(0,115,150,0.4) -5px 5px, rgba(0,115,150,0.3) -10px 10px, rgba(0,115,150,0.2) -15px 15px, rgba(0,115,150,0.1) -20px 20px, rgba(0,115,150,0.05) -25px 25px;
+
+      &:hover{
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
+
+        box-shadow: rgba(49, 190, 222,0.4) -5px 5px, rgba(49, 190, 222,0.3) -10px 10px, rgba(49, 190, 222,0.2) -15px 15px, rgba(49, 190, 222,0.1) -20px 20px, rgba(49, 190, 222,0.05) -25px 25px;
+        transition: box-shadow 0.3s ease;
+
+        border: 2px solid ${({ theme }) => theme.COLORS.BLUE_100};
+        transition: border 0.3s ease;
+      }
     }
 
     .like, .edit {
@@ -47,7 +58,7 @@ export const Container = styled.div`
       font-size: 0.87rem;
       text-align: center;
       margin: 0px 2px;
-      max-height: 44px;
+      max-height: 39px;
       overflow: hidden;
     }
 
@@ -58,6 +69,7 @@ export const Container = styled.div`
       color: ${({ theme }) => theme.COLORS.LIGHT_100};
       font-size: 1.1rem;
       align-items: center;
+      cursor: pointer;
     }
 
     .quantity {

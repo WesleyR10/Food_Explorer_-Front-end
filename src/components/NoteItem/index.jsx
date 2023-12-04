@@ -1,5 +1,4 @@
 import { FiPlus, FiX } from 'react-icons/fi'
-
 import { Container } from './styles'
 
 // eslint-disable-next-line react/prop-types

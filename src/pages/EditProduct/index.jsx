@@ -95,7 +95,7 @@ export function EditProduct() {
       }
       await api.put(`products/${params.id}`, data);
 
-      alert('Nota criada com sucesso!');
+      alert('Nota alterada com sucesso!');
       navigate(-1);
 
     } catch (error) {

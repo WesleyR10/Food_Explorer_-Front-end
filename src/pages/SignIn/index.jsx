@@ -14,9 +14,6 @@ export function SignIn() {
   const { signIn } = useAuth();
 
   function handleSignIn() {
-    console.log("Email:", email); // Verifica se o email está sendo capturado corretamente
-    console.log("Password:", password); // Verifica se a senha está sendo capturada corretamente
-
     signIn({ email, password })
   }
 

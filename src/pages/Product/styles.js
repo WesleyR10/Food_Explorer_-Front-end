@@ -61,6 +61,7 @@ export const Container = styled.div`
           > span {
             display: flex;
             gap: 0.7rem;
+            cursor: pointer;
           }
 
           >button {

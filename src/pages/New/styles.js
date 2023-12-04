@@ -40,7 +40,7 @@ export const Container = styled.div`
         display: flex;
         flex-direction: column;
         flex: 1;
-        gap: 1rem
+        gap: 1rem;
       }
 
       .input-file {
@@ -70,7 +70,6 @@ export const Container = styled.div`
       .ingredients {
       display: flex;
       flex-wrap: wrap;
-      height: 48px;
       gap: 0.5rem;
       background-color: ${({ theme }) => theme.COLORS.DARK_800};
       border-radius: 8px;

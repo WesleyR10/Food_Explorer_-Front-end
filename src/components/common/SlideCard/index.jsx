@@ -12,8 +12,9 @@ import { useAuth } from '../../../hooks/auth';
 import { USER_ROLE } from '../../../../utils/roles';
 
 
-export function SlideCard({ product, handleFavoriteToggle }) {
+export function SlideCard({ product, handleFavoriteToggle, onQuantityChange }) {
   const [favorites, setFavorites] = useState([]);
+  const [quantity, setQuantity] = useState(1);
   const isFavorite = favorites.includes(product.id);
 
   const { user } = useAuth();
@@ -54,6 +55,28 @@ export function SlideCard({ product, handleFavoriteToggle }) {
     }
   }
 
+  function formatQuantity(number) {
+    return number < 10 ? `0${number}` : `${number}`;
+  }
+
+  function increaseQuantity() {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  }
+
+  function decreaseQuantity() {
+    setQuantity((prevQuantity) => {
+      if (prevQuantity > 1) {
+        return prevQuantity - 1;
+      } else {
+        return prevQuantity;
+      }
+    });
+  }
+
+  function handleProductQuantity() {
+    onQuantityChange(quantity);
+  }
+
   return (
     <Container>
       <section
@@ -70,9 +93,9 @@ export function SlideCard({ product, handleFavoriteToggle }) {
             :
             <div className="quantity">
               <span>
-                <FiMinus /> 01 <FiPlus />
+                <FiMinus onClick={decreaseQuantity} /> {formatQuantity(quantity)} <FiPlus onClick={increaseQuantity} />
               </span>
-              <Button title="Incluir" />
+              <Button title="Incluir" onClick={handleProductQuantity} />
             </div>
           }
         </div>

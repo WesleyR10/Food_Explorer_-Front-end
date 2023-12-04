@@ -1,12 +1,13 @@
+import { FiUser, FiMail, FiLock } from 'react-icons/fi'
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { FiUser, FiMail, FiLock } from 'react-icons/fi'
+import { api } from "../../services/api";
 
 import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
 import { Container, Form, Background } from "./styles";
 
-import { api } from "../../services/api";
+
 
 export function SignUp() {
   const [name, setName] = useState("")
@@ -16,7 +17,6 @@ export function SignUp() {
   const navigate = useNavigate()
 
   function handleSignUp() {
-    //console.log(name, email, password)
     if (!name || !email || !password) {
       return alert("Preencha todos os campos!")
     }

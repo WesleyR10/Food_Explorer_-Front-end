@@ -11,6 +11,11 @@ export function Home() {
   const [categories, setCategories] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [menuIsOpen, setMenuIsOpen] = useState(false)
+  const [productQuantity, setProductQuantity] = useState(0);
+
+  const handleQuantityChange = (quantity) => {
+    setProductQuantity((prevQuantity) => prevQuantity + quantity);
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -57,9 +62,9 @@ export function Home() {
       <Container>
         <SideMenu menuIsOpen={menuIsOpen} onCloseMenu={() => setMenuIsOpen(false)} />
 
-        <Header onOpenMenu={() => setMenuIsOpen(true)} />
+        <Header productQuantity={productQuantity} onOpenMenu={() => setMenuIsOpen(true)} />
         <Banner />
-        <Categories categories={categories} handleFavoriteToggle={handleFavoriteToggle} />
+        <Categories categories={categories} handleFavoriteToggle={handleFavoriteToggle} onQuantityChange={handleQuantityChange} />
         <Footer />
       </Container>
     </main>

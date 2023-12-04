@@ -18,7 +18,6 @@ export const Container = styled.div`
     background-color: ${({ theme }) => theme.COLORS.LIGHT_600};
   }
   overflow: hidden; 
-
   > button { 
     border: none;
     background: none;
@@ -41,7 +40,7 @@ export const Container = styled.div`
   > input {
     max-width: 125px;
     height: 2rem;
-
+    
     padding: 0.7rem 0.4rem 0.7rem 0.6rem;
 
     color: ${({ theme }) => theme.COLORS.LIGHT_100};

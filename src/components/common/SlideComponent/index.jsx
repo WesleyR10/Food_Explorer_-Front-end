@@ -5,7 +5,7 @@ import { SlideCard } from "../SlideCard";
 import { Container } from "./styles";
 
 
-export function SlideComponent({ products, handleFavoriteToggle }) {
+export function SlideComponent({ products, handleFavoriteToggle, onQuantityChange }) {
   let slideCount = 0;
 
   if (products.length >= 5) {
@@ -13,6 +13,7 @@ export function SlideComponent({ products, handleFavoriteToggle }) {
   } else if (products) {
     slideCount = products.length
   }
+
   return (
     <>
       <div>
@@ -66,7 +67,7 @@ export function SlideComponent({ products, handleFavoriteToggle }) {
           {products.map(product => (
             <SplideSlide key={product.id}>
               <Container>
-                <SlideCard product={product} handleFavoriteToggle={handleFavoriteToggle} />
+                <SlideCard product={product} handleFavoriteToggle={handleFavoriteToggle} onQuantityChange={onQuantityChange} />
               </Container>
             </SplideSlide>
           ))}
