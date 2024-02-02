@@ -1,4 +1,6 @@
-Food Explorer 
+# Food Explorer 
+
+![wrfoodexplorer netlify app_](https://github.com/WesleyR10/Food_Explorer_-Front-end/assets/115756312/f3402cb5-1f9d-480c-a7f9-b95a8e0d9d6f)
 
 O Food Explorer é um desafio da trilha explorer do curso da Rockseat, que simula um ambiente de restaurante com funcionalidades completas de CRUD (Create, Read, Update, Delete), busca por nome ou ingrediente e capacidade de marcar como favorito, responsivo para mobile e desktop entre outras características.
 
